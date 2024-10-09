@@ -26,7 +26,7 @@ const Register = () => {
   };
 
   return (
-    <div className='root'>
+    <div className='container-register'>
         <div className='form-container'>
             <Input
             label={''}

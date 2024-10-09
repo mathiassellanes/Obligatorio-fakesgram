@@ -7,6 +7,7 @@ import Layout from "../../components/Layout";
 import Notifications from "../../routes/Notifications";
 import Profile from "../../routes/Profile";
 import Register from "../../routes/Register";
+import Login from "../../routes/Login";
 
 export const BrowserRouter = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ export const BrowserRouter = createBrowserRouter([
     ]
   },
   {
-    element: <Register />,
-    path: "register",
+    element: <Login />,
+    path: "login",
   },
 ]);
