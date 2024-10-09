@@ -1,0 +1,28 @@
+.button {
+    background-color: #3897f0; /* Color azul del botón */
+    color: #fff; /* Texto blanco */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    font-size: 14px; /* Tamaño de fuente */
+    font-weight: bold; /* Texto en negrita */
+    border: none; /* Sin bordes */
+    border-radius: 8px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    max-width: 300px; /* Límite máximo del ancho */
+    margin: 10px auto; /* Centrado automático */
+    text-align: center; /* Centra el texto */
+    transition: background-color 0.3s ease; /* Transición suave para el hover */
+  
+    &:hover {
+      background-color: #3182ce; /* Color más intenso en hover */
+    }
+  
+    &:active {
+      background-color: #256cba; /* Color aún más intenso al hacer click */
+    }
+  
+    &:focus {
+      outline: none; /* Elimina el contorno por defecto */
+    }
+  }
+  

@@ -6,6 +6,7 @@ import Home from '../../routes/Home';
 import Layout from "../../components/Layout";
 import Notifications from "../../routes/Notifications";
 import Profile from "../../routes/Profile";
+import Register from "../../routes/Register";
 
 export const BrowserRouter = createBrowserRouter([
   {
@@ -29,5 +30,9 @@ export const BrowserRouter = createBrowserRouter([
         path: "create"
       }
     ]
-  }
+  },
+  {
+    element: <Register />,
+    path: "register",
+  },
 ]);
