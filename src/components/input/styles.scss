@@ -1,0 +1,66 @@
+.field {
+    margin-bottom: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto; // Centra los elementos del formulario
+    position: relative; // Necesario para que el label flotante se posicione correctamente
+  
+    &.has-content .floating-label,
+    .input:focus ~ .floating-label {
+      top: -10px;
+      font-size: 0.75rem;
+      color: #3897f0; 
+    }
+  }
+  
+  .label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .floating-label {
+    position: absolute;
+    top: 10px; 
+    left: 10px;
+    color: #888888;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: all 0.2s ease;
+  }
+  
+  .control {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input {
+    border: 1px solid #dbdbdb;
+    padding: 10px;
+    font-size: 14px;
+    color: black;
+    border-radius: 3px;
+    background-color: rgb(250, 250, 250);
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+  
+    &:focus {
+      border-color: #b2b2b2;
+      outline: none;
+    }
+  
+    &::placeholder {
+      color: #888888; 
+      opacity: 1; 
+    }
+  }
+  
+  .error {
+    .help {
+      color: #e74c3c;
+      font-size: 12px;
+    }
+  }
+  
