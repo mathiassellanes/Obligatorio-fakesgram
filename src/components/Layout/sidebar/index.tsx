@@ -1,21 +1,26 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import cs from "classnames";
 
 import { sidebarLoggedInOptions, sidebarLoggedOutOptions } from "../../../utils/constants/sidebarOptions";
 
 import './styles.scss'
+import { routes } from "../../../utils/constants/routes";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   const handleClicked = (option: string) => {
     switch (option) {
       case 'Login':
-        console.log('login');
+        navigate(routes.auth.login.complete);
+
         break;
       case 'Logout':
-        console.log('logout');
+        navigate(routes.auth.login.complete);
+        localStorage.removeItem('token');
+
         break;
       default:
-        console.log('default');
         break;
     }
   }

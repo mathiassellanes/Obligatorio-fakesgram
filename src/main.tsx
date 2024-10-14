@@ -4,7 +4,7 @@ import {
   RouterProvider
 } from 'react-router-dom'
 
-import { BrowserRouter } from './utils/constants/routes.tsx'
+import { BrowserRouter } from './utils/constants/BrowerRouter.tsx'
 
 import './index.css'
 
