@@ -63,3 +63,39 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .post-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    .post {
+      width: 100%;
+      padding-top: 100%; /* Aspect ratio square */
+      position: relative;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
