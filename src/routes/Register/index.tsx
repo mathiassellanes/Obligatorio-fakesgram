@@ -25,9 +25,7 @@ const Register = () => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    const aa = await register(form);
-
-    console.log(aa);
+    await register(form);
   };
 
   return (

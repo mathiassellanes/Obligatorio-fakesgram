@@ -15,8 +15,6 @@ const Home = () => {
     fetchFeed();
   }, []);
 
-  console.log(posts);
-
   return (
     <div className="posts">
       {

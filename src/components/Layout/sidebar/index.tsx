@@ -21,7 +21,6 @@ const Sidebar = () => {
 
         break;
       default:
-        console.log('default');
         break;
     }
   }
