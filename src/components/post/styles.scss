@@ -1,0 +1,113 @@
+.post {
+    position: relative; // Permite posicionar el nombre de usuario encima de la imagen
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: white;
+
+    .post-header {
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+        background-color: rgba(0, 0, 0, 0.6); // Fondo negro semitransparente para el nombre de usuario
+        padding: 5px;
+        border-radius: 5px;
+    }
+
+    .post-image {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+
+        img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    }
+
+    .post-actions {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 10px;
+        gap: 0px;
+
+        .like-button,
+        .comment-button {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px 5px;
+            transition: transform 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.1); // Efecto de zoom al pasar el cursor
+            }
+        }
+    }
+
+    .post-likes {
+        margin-top: 5px;
+        font-size: 14px;
+        color: #333;
+    }
+
+
+    .post-description {
+        margin-top: 10px;
+        font-size: 14px;
+        text-align: left; // Descripción alineada a la izquierda
+        color: black;
+        background-color: #f9f9f9; // Fondo gris claro para la descripción
+    }
+
+    .comment-form {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+
+        .comment-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .submit-comment-button {
+            background-color: #3897f0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+
+            &:hover {
+                background-color: #287dc0;
+            }
+        }
+    }
+
+    .post-comments {
+        margin-top: 10px;
+        max-height: 150px; // Limita la altura de la sección de comentarios
+        overflow-y: auto; // Activa la barra de scroll cuando hay muchos comentarios
+        padding-right: 10px; // Espacio para la barra de desplazamiento
+        border-top: 1px solid #ddd; // Línea que separa los comentarios del resto del post
+
+        .comment {
+            padding: 5px;
+            border-bottom: 1px solid #eee;
+            color: black;
+        }
+
+        .comment:last-child {
+            border-bottom: none; // Elimina la línea de la última entrada
+        }
+    }
+}
