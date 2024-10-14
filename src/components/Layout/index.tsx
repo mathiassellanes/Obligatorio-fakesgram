@@ -3,19 +3,16 @@ import Sidebar from "./sidebar";
 import Register from "../../routes/Register";
 
 const Layout = () => {
-  const logueado = false;
-  if (logueado) {
-    return (
-      <div>
-        <Sidebar/>
-        <Outlet/>
-      </div>
-    );
-  } else {
-    return (
-      <Register/>
-    );
-  }
+  const logueado = localStorage.getItem('token');
+
+  console.log(logueado);
+
+  return (
+    <>
+      <Sidebar />
+      <Outlet />
+    </>
+  );
 };
 
 export default Layout;
