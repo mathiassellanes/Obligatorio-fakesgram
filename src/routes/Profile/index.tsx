@@ -1,22 +1,29 @@
 import React from 'react';
 import { useStore } from '../../store';
+import './styles.scss';
 
 const Profile = () => {
-  const { username, profilePic, posts } = useStore();
+  const userInfo = useStore((state) => state.userInfo);
 
   return (
-    <div className="profile">
+    <div className="profile-container">
       <div className="profile-header">
-        <img src={profilePic} alt="Profile" className="profile-pic" />
-        <h2>{username}</h2>
-        <button>Edit Profile</button>
-      </div>
+        <img src={userInfo.avatarUrl} alt="avatar" className="avatar" />
+        <div className="profile-info">
+          <h2>{userInfo.username}</h2>
+          <p>{userInfo.posts} posts | {userInfo.friends} friends</p>
+          <p>{userInfo.bio}</p>
 
-      <div className="post-grid">
-        {posts.map((post, index) => (
-          <div key={index} className="post">
-            <img src={post} alt={`post-${index}`} />
-          </div>
+        </div>
+        <div className="profile-buttons">
+        <button>Editar Perfil</button>
+        <button>Agregar amigo?</button>
+        </div>
+
+      </div>
+      <div className="profile-gallery">
+        {userInfo.photos.map((photo, index) => (
+          <img key={index} src={photo} alt="user post" />
         ))}
       </div>
     </div>

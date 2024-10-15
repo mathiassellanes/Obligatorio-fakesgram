@@ -86,7 +86,7 @@ button:focus-visible {
     gap: 10px;
     .post {
       width: 100%;
-      padding-top: 100%; /* Aspect ratio square */
+      padding-top: 100%;
       position: relative;
       img {
         position: absolute;
