@@ -3,6 +3,7 @@
   height: 100vh;
   top: 0;
   left: 0;
+  z-index:1000;
   border-right: #DBDBDB 1px solid;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -10,6 +11,7 @@
   flex-direction: column;
   gap: 33px;
   align-items: center;
+  background-color: white;
 
   &__title {
     color: #1E1E1E;
