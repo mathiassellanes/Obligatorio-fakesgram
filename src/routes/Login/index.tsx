@@ -36,21 +36,21 @@ const Login = () => {
     <div className='container-login'>
       <div className='form-container'>
         <Input
-          label={''}
+          label={'Email address'}
           value={form.email}
           onChange={handleChange}
           name={'email'}
           type='email'
-          placeholder='Email address'
+          placeholder=''
         />
 
         <Input
-          label={''}
+          label={'Password'}
           value={form.password}
           onChange={handleChange}
           name={'password'}
           type='password'
-          placeholder='Password'
+          placeholder=''
         />
 
         <Button

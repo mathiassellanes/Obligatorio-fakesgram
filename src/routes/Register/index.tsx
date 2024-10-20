@@ -32,39 +32,39 @@ const Register = () => {
     <div className='container-register'>
       <div className='form-container'>
         <Input
-          label={''}
+          label={'Username'}
           value={form.username}
           onChange={handleChange}
           name={'username'}
           type='text'
-          placeholder='Username'
+          placeholder=''
         />
 
         <Input
-          label={''}
+          label={'Email address'}
           value={form.email}
           onChange={handleChange}
           name={'email'}
           type='email'
-          placeholder='Email address'
+          placeholder=''
         />
 
         <Input
-          label={''}
+          placeholder=''
+          label={'Password'}
           value={form.password}
           onChange={handleChange}
           name={'password'}
           type='password'
-          placeholder='Password'
         />
 
         <Input
-          label={''}
+          label={'Repeat password'}
           value={form.repeatPassword}
           onChange={handleChange}
           name={'repeatPassword'}
           type='password'
-          placeholder='Repeat password'
+          placeholder=''
         />
 
         <Button
