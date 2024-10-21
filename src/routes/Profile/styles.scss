@@ -1,47 +1,78 @@
-.profile {
-    display: flex;
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.profile-info {
+  flex: 1;
+  padding-left: 20px;
+}
+
+.profile-info h2 {
+  font-size: 24px;
+  margin: 0;
+  color: #000000;
+}
+
+.profile-info p {
+  margin: 5px 0;
+  color: #000000;
+}
+
+.profile-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+}
+
+.profile-gallery img {
+  width: 100%;
+  height: auto;
+}
+.profile-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+
+
+
+@media (max-width: 768px) {
+  .profile-header {
     flex-direction: column;
     align-items: center;
-    .profile-header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        button {
-          background-color: $primary-color;
-          color: white;
-          padding: 10px 20px;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-        }
-        button.friend {
-          background-color: $secondary-color;
-        }
-      }
-      
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-    }
-    .post-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      .post {
-        width: 100%;
-        padding-top: 100%; /* Aspect ratio square */
-        position: relative;
-        img {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-      }
-    }
   }
-  
+
+  .profile-info {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .profile-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-gallery {
+    grid-template-columns: 1fr;
+  }
+}
