@@ -1,0 +1,45 @@
+.notification {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: #262626;
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+}
+
+.notification-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.notification-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.notification-message {
+    font-size: 14px;
+    color: #262626;
+    margin: 0;
+}
+
+.notification-message a {
+    font-weight: bold;
+    color: #262626;
+    text-decoration: none;
+}
+
+.notification-message a:hover {
+    text-decoration: underline;
+}
+
+.notification-time {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.5);
+    margin-top: 3px;
+}
