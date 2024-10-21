@@ -19,17 +19,22 @@ const Home = () => {
     fetchFeed();
   }, []);
 
+  console.log(posts);
+
   return (
-    <div className="posts">
-      {posts.map((post: any) => (
-        <Post
-          key={post.id}
-          imageUrl={post.imageUrl}
-          description={post.description}
-          username={post.username}
-        />
-      ))}
+    <div className="home">
+      <div className="posts">
+        {posts.map((post: any) => (
+          <Post
+            key={post.id}
+            imageUrl={post.imageUrl}
+            description={post.caption}
+            username={post.user.username}
+          />
+        ))}
+      </div>
     </div>
+
   );
 };
 

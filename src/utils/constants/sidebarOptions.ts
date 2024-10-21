@@ -6,37 +6,37 @@ import loginIcon from '../../assets/login.svg';
 
 export const sidebarLoggedInOptions = [
   {
-    name: 'Home',
+    name: 'Inicio',
     to: '',
     icon: homeIcon
   },
   {
-    name: 'Notifications',
-    to: 'notifications',
-    icon: notificationIcon
-  },
-  {
-    name: 'Create',
+    name: 'Crear',
     to: 'create',
     icon: createIcon
   },
   {
-    name: 'Profile',
+    name: 'Notificaciones',
+    to: 'notifications',
+    icon: notificationIcon
+  },
+  {
+    name: 'Perfil',
     to: 'profile',
   },
   {
-    name: 'Logout',
+    name: 'Cerrar sesión',
     icon: logoutIcon
   }
 ];
 
 export const sidebarLoggedOutOptions = [
   {
-    name: 'Home',
+    name: 'Inicio',
     icon: homeIcon
   },
   {
-    name: 'Login',
+    name: 'Iniciar sesión',
     icon: loginIcon,
   }
 ];

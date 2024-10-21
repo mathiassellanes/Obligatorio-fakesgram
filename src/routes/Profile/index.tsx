@@ -2,6 +2,8 @@ import React from 'react';
 import { useStore } from '../../store';
 import './styles.scss';
 
+import './styles.scss';
+
 const Profile = () => {
   const userInfo = useStore((state) => state.userInfo);
 
