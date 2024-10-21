@@ -11,9 +11,13 @@ export const sidebarLoggedInOptions = [
     icon: homeIcon
   },
   {
-    name: 'Crear',
+    name: 'Create',
     to: 'create',
     icon: createIcon
+  },
+  {
+    name: 'Notifications',
+    icon: notificationIcon
   },
   {
     name: 'Notificaciones',

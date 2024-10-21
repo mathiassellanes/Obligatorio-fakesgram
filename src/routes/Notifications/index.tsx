@@ -1,23 +1,39 @@
 import { useLocation } from "react-router-dom";
 import "./styles.scss"
-import { useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Notification from "../../components/notification";
 
-const Notifications = () => {
-  const location = useLocation();
-  const [isOpen, setIsOpen] = useState(false);
+interface NotificationsProps {
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  sidebarRef: React.RefObject<HTMLDivElement>;
+}
+
+const Notifications: FC<NotificationsProps> = ({
+  isOpen,
+  setIsOpen,
+  sidebarRef
+}) => {
+  const notificationsRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    if (location.pathname === '/notifications') {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node) && sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
     }
-  }, [location]);
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [])
 
   return (
-    <div className={`notification-sidebar ${isOpen ? 'open' : ''}`}>
+    <div ref={notificationsRef} className={`notification-sidebar ${isOpen ? 'open' : ''}`}>
       <h2>Notifications</h2>
-      <Notification profilePic={"https://www.veteralia.com/wp-content/uploads/2017/03/Intro.jpg"} message={"uwu"} time={"7h"} /> 
+      <Notification profilePic={"https://www.veteralia.com/wp-content/uploads/2017/03/Intro.jpg"} message={"uwu"} time={"7h"} />
       {/*Habría que mapear esto despues con las notificaciones y como corresponda*/ }
     </div>
   );

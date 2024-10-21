@@ -1,23 +1,22 @@
-
 .notification-sidebar {
-    position: fixed;
-    left: -400px; 
-    top: 0;
-    z-index: 900; 
-    width: 25%; 
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    overflow-y: auto;
-    transition: transform 0.4s ease-in-out; 
-    transform: translateX(-100%);
-    color : black;
-  }
-  
-  /*Hay alguna cosilla con las posiciones que no esta muy bien*/
+  left: -250px;
+  position: fixed;
+  top: 0;
+  z-index: 900;
+  width: 250px;
+  height: 100%;
+  background-color: #fff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  overflow-y: auto;
+  transition: all 0.1s ease-in-out;
+  color: black;
+}
+
+/*Hay alguna cosilla con las posiciones que no esta muy bien*/
 
 .notification-sidebar.open {
-    transform: translateX(650px);
-    transition: transform 4s ease-in-out;
+  left: 0;
+  transform: translateX(250px);
+  transition: all 0.3s ease-in-out;
 }
