@@ -42,4 +42,10 @@ export const feed = async () => {
   return response.data;
 }
 
+export const profileById = async (id: string) => {
+  const response = await api.get(`/user/profile/${id}`);
+
+  return response.data;
+}
+
 export default api;

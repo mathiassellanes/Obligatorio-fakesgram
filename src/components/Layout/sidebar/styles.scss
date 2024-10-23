@@ -1,9 +1,9 @@
 .sidebar {
-  width: 250px;
-  height: 100vh;
+  min-width: 250px;
+  height: 100%;
   top: 0;
   left: 0;
-  z-index:1000;
+  z-index: 2;
   border-right: #DBDBDB 1px solid;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
@@ -33,7 +33,7 @@
       color: #1E1E1E;
       background-color: #DBDBDB;
 
-      & > .sidebar__option-image {
+      &>.sidebar__option-image {
         scale: 1.1;
       }
     }
@@ -63,9 +63,9 @@
 
 .notification-sidebar {
   left: -250px;
-  position: fixed;
+  position: absolute;
   top: 0;
-  z-index: 900;
+  z-index: 1;
   width: 250px;
   height: 100%;
   background-color: #fff;

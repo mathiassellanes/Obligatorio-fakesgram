@@ -26,7 +26,9 @@ const Login = () => {
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    await login(form);
+    const loginData = await login(form);
+
+    localStorage.setItem('user', JSON.stringify(loginData));
 
     navigate(routes.base.home.complete);
   };

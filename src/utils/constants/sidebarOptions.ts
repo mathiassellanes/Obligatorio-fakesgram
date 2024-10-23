@@ -16,12 +16,7 @@ export const sidebarLoggedInOptions = [
     icon: createIcon
   },
   {
-    name: 'Notifications',
-    icon: notificationIcon
-  },
-  {
     name: 'Notificaciones',
-    to: 'notifications',
     icon: notificationIcon
   },
   {
@@ -42,5 +37,6 @@ export const sidebarLoggedOutOptions = [
   {
     name: 'Iniciar sesión',
     icon: loginIcon,
+    to: 'login'
   }
 ];

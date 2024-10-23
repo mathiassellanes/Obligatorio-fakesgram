@@ -17,16 +17,12 @@ const Sidebar = () => {
 
   const handleClicked = (option: string) => {
     switch (option) {
-      case 'Login':
-        navigate(routes.auth.login.complete);
-
-        break;
-      case 'Logout':
+      case 'Cerrar sesión':
         navigate(routes.auth.login.complete);
         localStorage.removeItem('token');
 
         break;
-      case 'Notifications':
+      case 'Notificaciones':
         setIsOpen(!isOpen);
 
         break;
