@@ -48,4 +48,10 @@ export const profileById = async (id: string) => {
   return response.data;
 }
 
+export const getNotifications = async () => {
+  const response = await api.get(`/notifications`);
+
+  return response.data;
+}
+
 export default api;

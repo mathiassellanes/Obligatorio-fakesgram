@@ -29,7 +29,7 @@ const Home = () => {
             key={post.id}
             imageUrl={post.imageUrl}
             description={post.caption}
-            username={post.user.username}
+            user={post.user}
           />
         ))}
       </div>

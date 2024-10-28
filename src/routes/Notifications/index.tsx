@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import "./styles.scss"
 import { FC, useEffect, useRef, useState } from "react";
 import Notification from "../../components/notification";
+import { getNotifications } from "../../api";
 
 interface NotificationsProps {
   isOpen: boolean;
@@ -16,12 +17,22 @@ const Notifications: FC<NotificationsProps> = ({
 }) => {
   const notificationsRef = useRef<HTMLDivElement>(null);
 
+  const [notifications, setNotifications] = useState([]);
+
+  const handleGetNotifications = async () => {
+    const response = await getNotifications();
+
+    setNotifications(response);
+  }
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node) && sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
+
+    handleGetNotifications();
 
     document.addEventListener('mousedown', handleClickOutside);
 
@@ -33,8 +44,12 @@ const Notifications: FC<NotificationsProps> = ({
   return (
     <div ref={notificationsRef} className={`notification-sidebar ${isOpen ? 'open' : ''}`}>
       <h2>Notifications</h2>
-      <Notification profilePic={"https://www.veteralia.com/wp-content/uploads/2017/03/Intro.jpg"} message={"uwu"} time={"7h"} />
-      {/*Habría que mapear esto despues con las notificaciones y como corresponda*/ }
+      {
+        notifications.map((notification, index) => (
+          <Notification profilePic={notification.userFrom.profilePicture} type={notification.type} createdAt={notification.createdAt} userFrom={notification.userFrom} />
+        ))
+      }
+      {/*Habría que mapear esto despues con las notificaciones y como corresponda*/}
     </div>
   );
 }
