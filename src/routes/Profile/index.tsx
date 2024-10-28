@@ -4,6 +4,7 @@ import './styles.scss';
 
 import './styles.scss';
 import { profileById } from '../../api';
+import Button from '../../components/button';
 
 const Profile = () => {
   const [profileInfo, setProfileInfo] = useState({
@@ -46,14 +47,18 @@ const Profile = () => {
 
         </div>
         <div className="profile-buttons">
-          <button>Editar Perfil</button>
-          <button>Agregar amigo?</button>
+          <Button label={'Editar'} onClick={function (e: React.MouseEvent<HTMLButtonElement>): void {
+            throw new Error('Function not implemented.');
+          } } />
+          <Button label={'Agregar'} onClick={function (e: React.MouseEvent<HTMLButtonElement>): void {
+            throw new Error('Function not implemented.');
+          } } />
         </div>
 
       </div>
       <div className="profile-gallery">
         {profileInfo.posts.map((post, index) => (
-          <img key={index} src={`${API_URL}/${post.imageUrl}`} alt="profile-gallery-post" />
+          <div className="profile-gallery-post"><img key={index} src={`${API_URL}/${post.imageUrl}`}  /> </div>
         ))}
       </div>
     </div>
