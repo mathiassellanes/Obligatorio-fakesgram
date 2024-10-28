@@ -40,14 +40,27 @@
 .profile-gallery {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
+  grid-gap: 5px;
   width: 100%;
 }
 
 .profile-gallery-post {
+  position: relative;
+  overflow: hidden;
   width: 100%;
-  height: auto;
+  padding-top: 100%; /* Ensures a square aspect ratio */
 }
+
+.profile-gallery-post img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crops image to fit square */
+  object-position: center;
+}
+
 .profile-buttons {
   display: flex;
   gap: 10px;
