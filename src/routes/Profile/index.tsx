@@ -7,14 +7,18 @@ import { profileById } from '../../api';
 
 const Profile = () => {
   const [profileInfo, setProfileInfo] = useState({
-    id: '',
-    username: '',
-    avatarUrl: '',
-    posts: 0,
-    friends: 0,
-    bio: '',
-    photos: [],
+    user: {
+      id: '',
+      username: '',
+      profilePicture: '',
+      email: '',
+      createdAt: '',
+      friends: [],
+    },
+    posts: []
   });
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchProfile = async () => {
     const user = localStorage.getItem('user')
@@ -34,22 +38,22 @@ const Profile = () => {
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <img src={profileInfo.avatarUrl} alt="avatar" className="avatar" />
+        <img src={profileInfo.user.profilePicture} alt="avatar" className="avatar" />
         <div className="profile-info">
-          <h2>{profileInfo.username}</h2>
-          <p>{profileInfo.posts} posts | {profileInfo.friends} friends</p>
-          <p>{profileInfo.bio}</p>
+          <h2>{profileInfo.user.username}</h2>
+          <p>{profileInfo.posts.length} posts | {profileInfo.user.friends.length} friends</p>
+          {/* <p>{profileInfo.bio}</p> */}
 
         </div>
         <div className="profile-buttons">
-        <button>Editar Perfil</button>
-        <button>Agregar amigo?</button>
+          <button>Editar Perfil</button>
+          <button>Agregar amigo?</button>
         </div>
 
       </div>
       <div className="profile-gallery">
-        {profileInfo.photos.map((photo, index) => (
-          <img key={index} src={photo} alt="user post" />
+        {profileInfo.posts.map((post, index) => (
+          <img key={index} src={`${API_URL}/${post.imageUrl}`} alt="profile-gallery-post" />
         ))}
       </div>
     </div>
