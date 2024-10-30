@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useStore } from '../../store';
 import './styles.scss';
 
+import { routes } from '../../utils/constants/routes';
+
 import './styles.scss';
 import { profileById } from '../../api';
 import Button from '../../components/button';
+import { useLocation } from 'react-router-dom';
 
 const Profile = () => {
   const [profileInfo, setProfileInfo] = useState({
@@ -36,6 +39,10 @@ const Profile = () => {
   }, []);
 
 
+
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <div className="profile-container">
       <div className="profile-header">
@@ -47,12 +54,17 @@ const Profile = () => {
 
         </div>
         <div className="profile-buttons">
-          <Button label={'Editar'} onClick={function (e: React.MouseEvent<HTMLButtonElement>): void {
-            throw new Error('Function not implemented.');
-          } } />
-          <Button label={'Agregar'} onClick={function (e: React.MouseEvent<HTMLButtonElement>): void {
-            throw new Error('Function not implemented.');
-          } } />
+          <Button 
+            label={location.pathname === routes.base.profile.complete ? 'Editar' : 'Agregar'} 
+            onClick={() => {
+              if (location.pathname === routes.base.profile.complete) {
+                console.log('Editar');
+              } else {
+                console.log('Agregar');
+              }
+            }}
+          />
+
         </div>
 
       </div>
