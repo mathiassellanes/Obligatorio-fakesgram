@@ -54,4 +54,10 @@ export const getNotifications = async () => {
   return response.data;
 }
 
+export const updateProfile = async (id: string, data: any) => {
+  const response = await api.put(`/user/profile/edit`, { ...data });
+
+  return response.data;
+}
+
 export default api;
