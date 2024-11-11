@@ -7,19 +7,31 @@ import comment from '../../assets/post/comments.svg';
 
 
 import './styles.scss';
+import { useNavigate } from "react-router-dom";
 
 interface PostProps {
   imageUrl: string;
   description: string;
-  username: string;
+  user: {
+    _id: string;
+    username: string;
+    profilePicture: string;
+  }
 }
 
-const Post: React.FC<PostProps> = ({ username, imageUrl, description }) => {
+const Post: React.FC<PostProps> = ({
+  user: {
+    _id,
+    username,
+    profilePicture
+  }, imageUrl, description }) => {
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
   const [comments, setComments] = useState<string[]>([]);
   const [newComment, setNewComment] = useState('');
   const [showCommentInput, setShowCommentInput] = useState(false);
+
+  const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL;
 
@@ -46,10 +58,14 @@ const Post: React.FC<PostProps> = ({ username, imageUrl, description }) => {
     }
   };
 
+  const handleGoToProfile = () => {
+    navigate(`/profile/${_id}`);
+  }
+
   return (
     <div className="post">
-      <div className="post-header">
-        <img className="post-header-image" />
+      <div className="post-header" onClick={handleGoToProfile}>
+        <img className="post-header-image" src={profilePicture} alt="avatar" />
         {username}
       </div>
       <div className="post-image">

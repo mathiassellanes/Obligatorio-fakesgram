@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useStore } from '../../store';
-import './styles.scss';
+import { useEffect, useState } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
+
+import { profileById } from '../../api';
+
+import Button from '../../components/button';
 
 import { routes } from '../../utils/constants/routes';
 
 import './styles.scss';
-import { profileById } from '../../api';
-import Button from '../../components/button';
-import { useLocation } from 'react-router-dom';
 
 const Profile = () => {
   const [profileInfo, setProfileInfo] = useState({
@@ -22,26 +22,23 @@ const Profile = () => {
     posts: []
   });
 
+  const profileId = useParams<{ id: string }>().id;
+
   const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchProfile = async () => {
     const user = localStorage.getItem('user')
 
-    console.log(user)
-
-    const profile = await profileById(JSON.parse(user)._id);
+    const profile = await profileById(profileId || JSON.parse(user)._id);
 
     setProfileInfo(profile);
   }
 
   useEffect(() => {
     fetchProfile();
-  }, []);
-
-
+  }, [profileId]);
 
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <div className="profile-container">
@@ -54,8 +51,8 @@ const Profile = () => {
 
         </div>
         <div className="profile-buttons">
-          <Button 
-            label={location.pathname === routes.base.profile.complete ? 'Editar' : 'Agregar'} 
+          <Button
+            label={location.pathname === routes.base.profile.complete ? 'Editar' : 'Agregar'}
             onClick={() => {
               if (location.pathname === routes.base.profile.complete) {
                 console.log('Editar');
@@ -70,7 +67,7 @@ const Profile = () => {
       </div>
       <div className="profile-gallery">
         {profileInfo.posts.map((post, index) => (
-          <div className="profile-gallery-post"><img key={index} src={`${API_URL}/${post.imageUrl}`}  /> </div>
+          <div className="profile-gallery-post"><img key={index} src={`${API_URL}/${post.imageUrl}`} /> </div>
         ))}
       </div>
     </div>
