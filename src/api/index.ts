@@ -60,4 +60,23 @@ export const updateProfile = async (id: string, data: any) => {
   return response.data;
 }
 
+export const addComment = async (postId: string, content: string) => {
+  const response = await api.post(`/posts/${postId}/comments`, { content });
+
+  return response.data;
+}
+
+
+export const deleteComment = async (postId: string, commentId: string) => {
+  const response = await api.delete(`/posts/${postId}/comments/${commentId}`);
+
+  return response.data;
+}
+
+export const fetchPost = async (postId: string) => {
+  const response = await api.get(`/posts/${postId}`);
+
+  return response.data;
+};
+
 export default api;

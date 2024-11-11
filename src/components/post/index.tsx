@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { useState } from 'react';
+import { fetchPost, addComment, deleteComment } from "../../api";
 
 import likeFilled from '../../assets/post/like-filled.svg';
 import likeVoid from '../../assets/post/like-void.svg';
@@ -10,30 +11,50 @@ import './styles.scss';
 import { useNavigate } from "react-router-dom";
 
 interface PostProps {
+  id: string;
   imageUrl: string;
   description: string;
-  user: {
-    _id: string;
-    username: string;
-    profilePicture: string;
-  }
+  username: string;
+  comments: Comment[];
+  profilePicture: string;
+}
+
+interface Comment {
+  _id: string;
+  content: string;
 }
 
 const Post: React.FC<PostProps> = ({
-  user: {
-    _id,
-    username,
-    profilePicture
-  }, imageUrl, description }) => {
+  id,
+  username,
+  imageUrl,
+  description,
+  comments: commentsFromBack,
+  profilePicture,
+}) => {
   const [likes, setLikes] = useState(0);
   const [isLiked, setIsLiked] = useState(false);
-  const [comments, setComments] = useState<string[]>([]);
+  const [comments, setComments] = useState<Comment[]>(commentsFromBack);
   const [newComment, setNewComment] = useState('');
   const [showCommentInput, setShowCommentInput] = useState(false);
+  const [showComments, setShowComments] = useState(false);
 
   const navigate = useNavigate();
 
   const API_URL = import.meta.env.VITE_API_URL;
+
+  useEffect(() => {
+    const loadPost = async () => {
+      try {
+        const post = await fetchPost(id);
+        setLikes(post.likes || 0);
+        setComments(post.comments || []);
+      } catch (error) {
+        console.error("Error loading post:", error);
+      }
+    };
+    loadPost();
+  }, [id]);
 
   const handleLike = () => {
     if (isLiked) {
@@ -49,18 +70,30 @@ const Post: React.FC<PostProps> = ({
     setShowCommentInput(!showCommentInput);
   };
 
-  const handleAddComment = (e: React.FormEvent) => {
+  const handleAddComment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (newComment.trim()) {
-      setComments([...comments, newComment]);
-      setNewComment('');
+      console.log(id)
+      const addedComment = await addComment(id, newComment);
+      setComments([...comments, addedComment]);
+      setNewComment("");
       setShowCommentInput(false);
     }
   };
 
   const handleGoToProfile = () => {
-    navigate(`/profile/${_id}`);
+    navigate(`/profile/${id}`);
   }
+
+  const handleDeleteComment = async (commentId: string) => {
+    await deleteComment(id, commentId);
+    setComments(comments.filter(comment => comment._id !== commentId));
+  };
+
+  const toggleShowComments = () => {
+    setShowComments(!showComments);
+  };
+
 
   return (
     <div className="post">
@@ -90,9 +123,22 @@ const Post: React.FC<PostProps> = ({
       </div>
 
       {
+        showComments && (
+          <div className="post-comments">
+            {comments.map((comment) => (
+              <div key={comment._id} className="comment">
+                <span>{comment.content}</span>
+                <button onClick={() => handleDeleteComment(comment._id)}>Eliminar</button>
+              </div>
+            ))}
+          </div>
+        )
+      }
+
+      {
         comments.length > 0 && (
-          <button className="post-comments-show">
-            Ver los {comments.length} comentarios
+          <button onClick={toggleShowComments} className="post-comments-show">
+            {showComments ? "Ocultar comentarios" : `Ver los ${comments.length} comentarios`}
           </button>
         )
       }
@@ -111,14 +157,6 @@ const Post: React.FC<PostProps> = ({
           )
         }
       </form>
-
-      <div className="post-comments">
-        {comments.map((comment, index) => (
-          <div key={index} className="comment">
-            {comment}
-          </div>
-        ))}
-      </div>
     </div>
   );
 }

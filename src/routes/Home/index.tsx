@@ -26,10 +26,13 @@ const Home = () => {
       <div className="posts">
         {posts.map((post: any) => (
           <Post
-            key={post.id}
+            key={post._id}
             imageUrl={post.imageUrl}
             description={post.caption}
-            user={post.user}
+            id={post._id}
+            username={post.user.username}
+            comments={post.comments}
+            profilePicture={post.user.profilePicture}
           />
         ))}
       </div>
