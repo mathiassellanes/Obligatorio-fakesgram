@@ -70,15 +70,6 @@ const Post: React.FC<PostProps> = ({
     setShowCommentInput(!showCommentInput);
   };
 
-  // const handleAddComment = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   if (newComment.trim()) {
-  //     setComments([...comments, newComment]);
-  //     setNewComment('');
-  //     setShowCommentInput(false);
-  //   }
-  // };
-
   const handleAddComment = async (e: React.FormEvent) => {
     e.preventDefault();
     if (newComment.trim()) {
@@ -149,9 +140,6 @@ const Post: React.FC<PostProps> = ({
           <button onClick={toggleShowComments} className="post-comments-show">
             {showComments ? "Ocultar comentarios" : `Ver los ${comments.length} comentarios`}
           </button>
-          // <button className="post-comments-show">
-          //   Ver los {comments.length} comentarios
-          // </button>
         )
       }
 
