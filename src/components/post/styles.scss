@@ -71,7 +71,7 @@
 
   &-description {
     font-size: 14px;
-    text-align: left; // Descripción alineada a la izquierda
+    text-align: left;
     color: black;
     display: flex;
     flex-direction: row;
@@ -130,6 +130,13 @@
       &:hover {
         background-color: #287dc0;
       }
+    }
+  }
+
+  .post-comments {
+    .comment {
+      color: black;
+      padding: 5px 0;
     }
   }
 }
