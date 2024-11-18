@@ -1,6 +1,7 @@
 import { FC, useEffect } from "react";
 import { useState } from 'react';
 import { fetchPost, addComment, deleteComment } from "../../api";
+import { FaTrash } from 'react-icons/fa';
 
 import likeFilled from '../../assets/post/like-filled.svg';
 import likeVoid from '../../assets/post/like-void.svg';
@@ -126,9 +127,9 @@ const Post: React.FC<PostProps> = ({
         showComments && (
           <div className="post-comments">
             {comments.map((comment) => (
-              <div key={comment._id} className="comment">
+              <div key={comment._id} className="post-comments-item">
                 <span>{comment.content}</span>
-                <button onClick={() => handleDeleteComment(comment._id)}>Eliminar</button>
+                <button className="post-comments-item-button" onClick={() => handleDeleteComment(comment._id)}><FaTrash /> {/* Aquí insertamos el ícono */}</button>
               </div>
             ))}
           </div>
