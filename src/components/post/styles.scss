@@ -115,6 +115,7 @@
       height: max-content;
       padding: 0;
       font-size: 14px;
+      margin-left: 10px;
     }
 
     .submit-comment-button {
@@ -133,10 +134,33 @@
     }
   }
 
-  .post-comments {
-    .comment {
+  &-comments {
+    width: 100%;
+
+    &-item {
       color: black;
       padding: 5px 0;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      &-button {
+        background: none;
+        border: none;
+        color: black;
+        cursor: pointer;
+        font-size: 14px;
+        padding: 0;
+        margin-left: 5px;
+
+
+      }
+
+      &-button:hover {
+        text-decoration: underline;
+        color: #ff0000;
+      }
     }
+
   }
 }
