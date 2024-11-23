@@ -1,9 +1,8 @@
-import { useLocation } from "react-router-dom";
-import "./styles.scss"
 import { FC, useEffect, useRef, useState } from "react";
 import Notification from "../../components/notification";
-import { getNotifications } from "../../api";
+import { getNotifications } from "../../api/notifications";
 
+import "./styles.scss"
 interface NotificationsProps {
   isOpen: boolean;
   setIsOpen: (isOpen: boolean) => void;
@@ -27,7 +26,10 @@ const Notifications: FC<NotificationsProps> = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (notificationsRef.current && !notificationsRef.current.contains(event.target as Node) && sidebarRef.current && !sidebarRef.current.contains(event.target as Node)) {
+      if (notificationsRef.current
+        && !notificationsRef.current.contains(event.target as Node)
+        && sidebarRef.current
+        && !sidebarRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     }
@@ -46,10 +48,9 @@ const Notifications: FC<NotificationsProps> = ({
       <h2>Notifications</h2>
       {
         notifications.map((notification, index) => (
-          <Notification profilePic={notification.userFrom.profilePicture} type={notification.type} createdAt={notification.createdAt} userFrom={notification.userFrom} />
+          <Notification profilePic={notification.fromUserId.profilePicture} type={notification.type} createdAt={notification.createdAt} userFrom={notification.fromUserId} />
         ))
       }
-      {/*Habría que mapear esto despues con las notificaciones y como corresponda*/}
     </div>
   );
 }

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 
-import { profileById, updateProfile } from '../../api';
+import { addFriend, profileById, removeFriend, updateProfile } from '../../api/user';
 
 import Button from '../../components/button';
 
 import './styles.scss';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Profile = () => {
   const [profileInfo, setProfileInfo] = useState({
@@ -19,33 +20,74 @@ const Profile = () => {
     },
     posts: []
   });
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [isEditing, setIsEditing] = useState(false);
   const [username, setUsername] = useState('');
   const [profilePicture, setProfilePicture] = useState('');
   const profileId = useParams<{ id: string }>().id;
+  const [userAdded, setUserAdded] = useState(false);
+
+  console.log(userAdded);
 
   const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchProfile = async () => {
-    const user = localStorage.getItem('user');
-    const profile = await profileById(JSON.parse(user)._id);
+    const profile = await profileById(profileId || user._id);
     setProfileInfo(profile);
     setUsername(profile.user.username);
     setProfilePicture(profile.user.profilePicture);
+    setUserAdded(profile.user.friends.find(friend => friend._id === user._id));
   }
 
   const handleEditProfile = async () => {
     try {
-      const user = localStorage.getItem('user');
-      const response = await updateProfile(JSON.parse(user)._id, { username, profilePicture });
+      await updateProfile(user._id, { username, profilePicture });
+
       setProfileInfo(prev => ({
         ...prev,
         user: { ...prev.user, username, profilePicture }
       }));
+
       setIsEditing(false);
+
+      localStorage.setItem('user', JSON.stringify({
+        ...user,
+        username,
+        profilePicture
+      }));
     } catch (error) {
       console.error("Error al actualizar el perfil", error);
+    }
+  }
+
+  const handleAddUser = async () => {
+    try {
+      if (userAdded) {
+        await removeFriend(profileId);
+
+        setProfileInfo(prev => ({
+          ...prev,
+          user: {
+            ...prev.user,
+            friends: prev.user.friends.filter(friend => friend._id !== user._id)
+          }
+        }));
+      } else {
+        await addFriend(profileId);
+
+        setProfileInfo(prev => ({
+          ...prev,
+          user: {
+            ...prev.user,
+            friends: [...prev.user.friends, user]
+          }
+        }));
+      }
+
+      setUserAdded((prev) => !prev);
+    } catch (error) {
+      console.error("Error al agregar amigo", error);
     }
   }
 
@@ -53,12 +95,22 @@ const Profile = () => {
     fetchProfile();
   }, [profileId]);
 
-  const location = useLocation();
+  const ShowEditButton = () => (isEditing ? (
+    <>
+      <Button label={'Guardar'} onClick={handleEditProfile} />
+      <Button label={'Cancelar'} onClick={() => setIsEditing(false)} />
+    </>
+  ) : (
+    <Button label={'Editar'} onClick={() => setIsEditing(true)} />
+  ))
 
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <img src={profileInfo.user.profilePicture} alt="avatar" className="avatar" />
+        {profileInfo.user.profilePicture
+          ? <img src={profileInfo.user.profilePicture} alt="avatar" className="avatar" />
+          : <FaUserCircle className="avatar" />
+        }
         <div className="profile-info">
           <h2>
             {isEditing ? (
@@ -83,15 +135,16 @@ const Profile = () => {
           )}
         </div>
         <div className="profile-buttons">
-          {isEditing ? (
-            <>
-              <Button label={'Guardar'} onClick={handleEditProfile} />
-              <Button label={'Cancelar'} onClick={() => setIsEditing(false)} />
-            </>
-          ) : (
-            <Button label={'Editar'} onClick={() => setIsEditing(true)} />
-          )}
-          <Button label={'Agregar'} onClick={() => {  }} />
+          {
+            profileId ? (
+              <Button
+                label={userAdded ? 'Desagregar' : 'Agregar'}
+                onClick={handleAddUser}
+              />
+            ) : (
+              <ShowEditButton />
+            )
+          }
         </div>
       </div>
       <div className="profile-gallery">

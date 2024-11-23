@@ -4,8 +4,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100vh; 
-    background-color: #f0f0f0; 
+    height: 100vh;
+    background-color: #f0f0f0;
 }
 
 .form-container, .logIn-container {
@@ -16,7 +16,12 @@
     background-color: #fff;
     text-align: center;
     width: 100%; /* Ensure both containers take the same width */
-    
+
+    &-error {
+        color: red;
+        font-size: 14px;
+        margin-top: 10px;
+    }
 }
 
 .logIn-container {
@@ -27,26 +32,25 @@
 }
 
 .logIn-container-paragraph {
-    font-size: 14px; 
-    color: #262626; 
-    text-align: center; 
-    margin-top: 15px; 
-    margin-bottom: 15px; 
-    margin-right: 10px; 
+    font-size: 14px;
+    color: #262626;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 10px;
     font-weight: 400;
 }
 
 .logIn-container-link {
-    color: #3897f0; 
-    font-weight: 600; 
-    text-decoration: none; 
+    color: #3897f0;
+    font-weight: 600;
+    text-decoration: none;
     cursor: pointer;
 
-    font-size: 14px; 
-    text-align: center; 
-    margin-top: 15px; 
-    margin-bottom: 15px; 
-    margin-right: 15px; 
-    
-}
+    font-size: 14px;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 15px;
 
+}

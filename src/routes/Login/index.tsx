@@ -3,7 +3,7 @@ import Input from '../../components/input';
 import './styles.scss';
 import Button from '../../components/button';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../../api';
+import { login } from '../../api/auth';
 import { routes } from '../../utils/constants/routes';
 
 const Login = () => {
@@ -62,7 +62,7 @@ const Login = () => {
       </div>
       <div className='signUp-container'>
         <p className='signUp-container-paragraph'>Don't have an account?</p>
-        <Link to={routes.base.home.complete} className='signUp-container-link'>Sign up</Link>
+        <Link to={routes.auth.register.complete} className='signUp-container-link'>Sign up</Link>
       </div>
     </div>
   );

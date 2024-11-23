@@ -3,7 +3,7 @@ import Input from '../../components/input';
 import './styles.scss';
 import Button from '../../components/button';
 import { Link } from 'react-router-dom';
-import { register } from '../../api';
+import { register } from '../../api/auth';
 import { routes } from '../../utils/constants/routes';
 
 const Register = () => {
@@ -14,6 +14,8 @@ const Register = () => {
     username: ''
   });
 
+  const [error, setError] = useState('');
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -23,9 +25,14 @@ const Register = () => {
   };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    await register(form);
+      await register(form);
+    } catch (error) {
+      console.log(error);
+      setError(error.response.data.message);
+    }
   };
 
   return (
@@ -66,6 +73,10 @@ const Register = () => {
           type='password'
           placeholder=''
         />
+
+        <span className='form-container-error'>
+          {error}
+        </span>
 
         <Button
           label={'Sign Up'}
