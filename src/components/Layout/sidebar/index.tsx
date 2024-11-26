@@ -17,7 +17,7 @@ const Sidebar = () => {
 
   const sidebarRef = useRef<HTMLDivElement>(null);
 
-  const user = JSON.parse(localStorage.getItem('user') || '');
+  const user = JSON?.parse(localStorage.getItem('user') || '{}');
 
   const handleClicked = (option: string) => {
     switch (option) {
