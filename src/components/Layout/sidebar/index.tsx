@@ -1,8 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import cs from "classnames";
 
 import { sidebarLoggedInOptions } from "../../../utils/constants/sidebarOptions";
+
+import { FaUserCircle } from 'react-icons/fa';
 
 import Notifications from "../../../routes/Notifications";
 import { routes } from "../../../utils/constants/routes";
@@ -14,6 +16,8 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const sidebarRef = useRef<HTMLDivElement>(null);
+
+  const user = JSON.parse(localStorage.getItem('user') || '');
 
   const handleClicked = (option: string) => {
     switch (option) {
@@ -33,8 +37,6 @@ const Sidebar = () => {
 
   const sidebarOption = sidebarLoggedInOptions;
 
-  const image = 'https://gratisography.com/wp-content/uploads/2024/03/gratisography-funflower-800x525.jpg'
-
   return (
     <>
       <div ref={sidebarRef} className="sidebar">
@@ -51,13 +53,18 @@ const Sidebar = () => {
                   }
                   key={index}
                 >
-                  <img
-                    className={cs("sidebar__option-image", {
-                      "sidebar__option-image--user": !option.icon
-                    })}
-                    src={option.icon || image}
-                    alt={option.name}
-                  />
+                  {
+                    user.profilePicture === '' && !option.icon ?
+                      <FaUserCircle className="sidebar__option-image" /> : (
+                        <img
+                          className={cs("sidebar__option-image", {
+                            "sidebar__option-image--user": !option.icon
+                          })}
+                          src={option.icon || user.profilePicture}
+                          alt={option.name}
+                        />
+                      )
+                  }
                   <span className="sidebar__option-description">{option.name}</span>
                 </NavLink>
               ) : (

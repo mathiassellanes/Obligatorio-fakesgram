@@ -12,6 +12,7 @@
   gap: 33px;
   align-items: center;
   background-color: white;
+  position: fixed;
 
   &__title {
     color: #1E1E1E;
@@ -63,7 +64,7 @@
 
 .notification-sidebar {
   left: -250px;
-  position: absolute;
+  position: fixed;
   top: 0;
   z-index: 1;
   width: 250px;
@@ -75,8 +76,6 @@
   transition: all 0.1s ease-in-out;
   color: black;
 }
-
-/*Hay alguna cosilla con las posiciones que no esta muy bien*/
 
 .notification-sidebar.open {
   left: 0;

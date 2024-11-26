@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { feed } from '../../api';
+import { feed } from '../../api/post';
 
 import Post from '../../components/post';
 
@@ -19,8 +19,6 @@ const Home = () => {
     fetchFeed();
   }, []);
 
-  console.log(posts);
-
   return (
     <div className="home">
       <div className="posts">
@@ -30,9 +28,11 @@ const Home = () => {
             imageUrl={post.imageUrl}
             description={post.caption}
             id={post._id}
+            userId={post.user._id}
             username={post.user.username}
             comments={post.comments}
             profilePicture={post.user.profilePicture}
+            likes={post.likes}
           />
         ))}
       </div>
