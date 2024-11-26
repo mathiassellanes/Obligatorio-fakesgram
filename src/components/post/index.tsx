@@ -101,17 +101,16 @@ const Post: React.FC<PostProps> = ({
       </div>
 
       <div className="post-actions">
-        <button onClick={handleLike} className="post-actions-button">
-          <img src={isLiked ? likeFilled : likeVoid} alt="like" />
-        </button>
+        <div className="post-actions-likes">
+          <button onClick={handleLike} className="post-actions-button">
+            <img src={isLiked ? likeFilled : likeVoid} alt="like" />
+          </button>
+          {likes}
+        </div>
 
         <button onClick={handleCommentButton} className="post-actions-button">
           <img src={comment} alt="comment" />
         </button>
-      </div>
-
-      <div className="post-likes">
-        {likes} Me gusta
       </div>
       <div className="post-description">
         <strong>{username}</strong><span>{description}</span>

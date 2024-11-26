@@ -45,7 +45,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 
     &-button {
       background: none;
@@ -61,6 +61,15 @@
       &:hover {
         transform: scale(1.1);
       }
+    }
+
+    &-likes {
+      color: #262626;
+      font-size: 14px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
   }
 
